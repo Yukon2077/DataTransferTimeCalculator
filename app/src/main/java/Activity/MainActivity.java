@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         double result = szi / spi ;
         String time = caltime(result);
         Txv.setText(time);
-        // Do something in response to button
     }
 
     public double ConverttoB(double a, String s){
