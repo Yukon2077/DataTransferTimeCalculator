@@ -1,4 +1,4 @@
-package com.yukon.downloadtimecalculator;
+package Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.yukon.downloadtimecalculator.R;
 
 public class MainActivity extends AppCompatActivity {
 
