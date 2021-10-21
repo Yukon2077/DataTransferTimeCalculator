@@ -1,130 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Activity.MainActivity">
+    tools:context="activities.MainActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:text="@string/enterspeed"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline5" />
-
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:entries="@array/speedunit"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editSpeed"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toEndOf="@+id/editSpeed" />
-
-    <EditText
-        android:id="@+id/editSize"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:ems="10"
-        android:hint="@string/size"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        android:maxLength="15"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <EditText
-        android:id="@+id/editSpeed"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:ems="10"
-        android:hint="@string/netspeed"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        android:maxLength="15"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="125dp"
-        android:text="@string/result"
-        android:textSize="24sp"
-        app:layout_constrainedHeight="true"
-        app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline3" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="0dp"
-        android:layout_height="75dp"
-        android:onClick="calculate"
-        android:text="@string/findresult"
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
         android:textSize="18sp"
+        android:textColor="?colorOnBackground"
+        app:layout_constraintBottom_toTopOf="@+id/transferSpeed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-        app:backgroundTint="@color/black"
-        app:layout_constrainedHeight="true"
-        app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="@+id/guideline3" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/transferSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Enter Transfer Speed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result"
+        app:layout_constraintBottom_toTopOf="@id/transferSpeedByteOrBitSwitch">
 
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:entries="@array/sizeunit"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editSize"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/editSize" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/textView3"
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/transferSpeedByteOrBitSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Use Bits instead of Bytes"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/transferSpeedRadioGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transferSpeed" />
+
+    <RadioGroup
+        android:id="@+id/transferSpeedRadioGroup"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="100dp"
-        android:text="@string/entersize"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/editSpeed" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="40dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="40dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="80dp" />
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/fileSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transferSpeedByteOrBitSwitch">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/transferSpeedNone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Bps" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/transferSpeedKilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="KBps" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/transferSpeedMega"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MBps" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/transferSpeedGiga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GBps" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/transferSpeedTera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TBps" />
+    </RadioGroup>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fileSize"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="40dp" />
+        android:layout_margin="8dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="Enter File Size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transferSpeedRadioGroup"
+        app:layout_constraintBottom_toTopOf="@id/fileSizeByteOrBitSwitch">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/fileSizeByteOrBitSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Use Bits instead of Bytes"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/fileSizeRadioGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fileSize" />
+
+    <RadioGroup
+        android:id="@+id/fileSizeRadioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/calculate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fileSizeByteOrBitSwitch">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/fileSizeNone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="B" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/fileSizeKilo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="KB" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/fileSizeMega"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MB" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/fileSizeGiga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GB" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/fileSizeTera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TB" />
+    </RadioGroup>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/calculate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Calculate"
+        android:onClick="calculate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

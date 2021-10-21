@@ -1,34 +1,3 @@
 <resources>
-    <string name="app_name">Download Time Calculator</string>
-    <string-array name="speedunit">
-        <item>Bps</item>
-        <item>KBps</item>
-        <item>MBps</item>
-        <item>GBps</item>
-        <item>TBps</item>
-        <item>bps</item>
-        <item>Kbps</item>
-        <item>Mbps</item>
-        <item>Gbps</item>
-        <item>Tbps</item>
-    </string-array>
-    <string-array name="sizeunit">
-        <item>B</item>
-        <item>KB</item>
-        <item>MB</item>
-        <item>GB</item>
-        <item>TB</item>
-        <item>b</item>
-        <item>Kb</item>
-        <item>Mb</item>
-        <item>Gb</item>
-        <item>Tb</item>
-    </string-array>
-    <string name="enterspeed">Enter your Network Speed</string>
-    <string name="entersize">Enter the file size</string>
-    <string name="findresult">Calculate Time taken</string>
-    <string name="result">Result</string>
-    <string name="netspeed">Network Speed</string>
-    <string name="size">File Size</string>
-
+    <string name="app_name">Data Transfer Time Calculator</string>
 </resources>
