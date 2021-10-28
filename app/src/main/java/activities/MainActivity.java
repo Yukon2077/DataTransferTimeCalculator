@@ -175,44 +175,19 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         years = (long) timeInSeconds / (60 * 60 * 24 * 365);
         String time = "";
         if(years>0) {
-            time += years;
-            if(years==1) {
-                time += " year ";
-            } else {
-                time += " years ";
-            }
+            time += years + (years==1?" year ":" years ");
         }
         if(days>0) {
-            time += days;
-            if(days==1) {
-                time += " day ";
-            } else {
-                time += " days ";
-            }
+            time += days + (days==1?" day ":" days ");
         }
         if(hours>0) {
-            time += hours;
-            if(hours==1) {
-                time += " hour ";
-            } else {
-                time += " hours ";
-            }
+            time += hours + (hours==1?" hour ":" hours ");
         }
         if(minutes>0) {
-            time += minutes;
-            if(minutes==1) {
-                time += " minute ";
-            } else {
-                time += " minutes ";
-            }
+            time += minutes + (minutes==1?" minute ":" minutes ");
         }
-        if(seconds>=0) {
-            time += seconds;
-            if(seconds==1) {
-                time += " second ";
-            } else {
-                time += " seconds ";
-            }
+        if(seconds>0) {
+            time += seconds + (seconds==1?" second ":" seconds ");
         }
         result.setText(time);
 
