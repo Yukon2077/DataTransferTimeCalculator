@@ -3,6 +3,8 @@ package activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
@@ -19,7 +21,7 @@ import com.yukon.activities.R;
 import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
+public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, RadioGroup.OnCheckedChangeListener, TextWatcher {
 
     MaterialToolbar toolbar;
     TextInputLayout transferSpeedTextLayout, fileSizeTextLayout;
@@ -59,9 +61,17 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         fileSizeTera = findViewById(R.id.fileSizeTera);
 
         transferSpeedSwitch.setOnCheckedChangeListener(this);
+        transferSpeedRadioGroup.setOnCheckedChangeListener(this);
+        transferSpeedTextLayout.getEditText().addTextChangedListener(this);
         fileSizeSwitch.setOnCheckedChangeListener(this);
+        fileSizeRadioGroup.setOnCheckedChangeListener(this);
+        fileSizeTextLayout.getEditText().addTextChangedListener(this);
 
+    }
 
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+        calculate();
     }
 
     @Override
@@ -98,23 +108,32 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 }
                 break;
         }
+        calculate();
     }
 
-    public void calculate(View view) {
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        calculate();
+    }
+
+    public void calculate() {
         Boolean isGood = true;
         if (transferSpeedTextLayout.getEditText().getText().toString().equals("")) {
-            transferSpeedTextLayout.setError("Transfer Speed is Empty");
             isGood = false;
-        } else {
-            transferSpeedTextLayout.setError(null);
         }
         if (fileSizeTextLayout.getEditText().getText().toString().equals("")) {
-            fileSizeTextLayout.setError("File Size is Empty");
             isGood = false;
-        } else {
-            fileSizeTextLayout.setError(null);
         }
-
         if (!isGood) {
             return;
         }
@@ -189,7 +208,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         if(seconds>0) {
             time += seconds + (seconds==1?" second ":" seconds ");
         }
+        if(time.equals("")) {
+            time = "0 seconds";
+        }
         result.setText(time);
 
     }
+
+
 }
